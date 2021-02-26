@@ -24,10 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
-            ],
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.scss"],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
@@ -63,7 +60,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-user-crud:build"
+            "browserTarget": "angular-user-crud:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
