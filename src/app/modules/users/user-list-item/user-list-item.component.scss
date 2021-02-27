@@ -1,0 +1,103 @@
+.user {
+  display: flex;
+  font-size: 12px;
+
+  span {
+    display: block;
+  }
+
+  input,
+  select {
+    display: none;
+  }
+
+  &:hover {
+    background-color: #eeeeee;
+
+    &:not(.editing) .actions {
+      color: #4fba96;
+      display: block;
+      font-size: 18px;
+    }
+  }
+
+  &.editing {
+    background-color: #eeeeee;
+
+    span {
+      display: none;
+    }
+
+    input,
+    select {
+      border: 1px solid #4fba96;
+      display: block;
+      height: 30px;
+      text-indent: 10px;
+      width: 100%;
+    }
+
+    .actions--editing {
+      color: #4fba96;
+      display: block;
+      font-size: 18px;
+    }
+
+    .user {
+      &__name {
+        padding: 10px;
+      }
+      &__email {
+        padding: 10px;
+      }
+      &__department {
+        padding: 10px;
+      }
+    }
+  }
+
+  &__name {
+    vertical-align: bottom;
+    height: 50px;
+    width: 32%;
+    border-bottom: 1px solid #dedede;
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    padding: 20px 10px 10px 10px;
+  }
+
+  &__email {
+    width: 38%;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    padding: 20px 10px 10px 10px;
+  }
+
+  &__department {
+    width: 25%;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    padding: 20px 10px 10px 10px;
+  }
+
+  &__actions {
+    font-size: 20px;
+    text-align: center;
+    width: 10%;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    padding: 10px;
+
+    .actions {
+      display: none;
+
+      &--editing {
+        display: none;
+      }
+    }
+  }
+}
+
+.arrow {
+  cursor: pointer;
+}

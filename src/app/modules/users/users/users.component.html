@@ -2,10 +2,24 @@
   <div class="row mt-5 pb-3">
     <div class="col-6">
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-rouced-left" [ngClass]="{'btn-primary': showListOrGrid, 'btn-secundary': !showListOrGrid}"
-          aria-label="List of Users" (click)="toogleView('list')"><em class="bi bi-layout-three-columns"></em></button>
-        <button type="button" class="btn btn-rouced-right" [ngClass]="{'btn-primary': !showListOrGrid, 'btn-secundary': showListOrGrid}"
-          aria-label="Grid of Users" (click)="toogleView('grid')"><em class="bi bi-grid-3x2"></em></button>
+        <button
+          type="button"
+          class="btn btn-rouced-left"
+          [ngClass]="{ 'btn-primary': showListOrGrid, 'btn-secundary': !showListOrGrid }"
+          aria-label="List of Users"
+          (click)="toogleView('list')"
+        >
+          <em class="bi bi-layout-three-columns"></em>
+        </button>
+        <button
+          type="button"
+          class="btn btn-rouced-right"
+          [ngClass]="{ 'btn-primary': !showListOrGrid, 'btn-secundary': showListOrGrid }"
+          aria-label="Grid of Users"
+          (click)="toogleView('grid')"
+        >
+          <em class="bi bi-grid-3x2"></em>
+        </button>
       </div>
     </div>
     <div class="col-6 text-end">
@@ -18,13 +32,13 @@
 
 <div class="card shadow">
   <ng-container *ngIf="showListOrGrid; else gridCardView">
-    <app-list></app-list>
+    <app-user-list></app-user-list>
   </ng-container>
   <ng-template #gridCardView>
-    <app-grid></app-grid>
+    <app-user-grid></app-user-grid>
   </ng-template>
 </div>
-<br>
+<br />
 
 <!-- Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,11 +49,11 @@
         <form>
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="Name">
+            <input type="text" id="name" name="name" value="Name" />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" value="email@domain.com" disabled>
+            <input type="email" id="email" value="email@domain.com" disabled />
           </div>
           <div class="field">
             <label for="email">Department</label>
@@ -66,11 +80,11 @@
         <form>
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="Name">
+            <input type="text" id="name" name="name" value="Name" />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" value="email@domain.com" disabled>
+            <input type="email" id="email" value="email@domain.com" disabled />
           </div>
           <div class="field">
             <label for="email">Department</label>

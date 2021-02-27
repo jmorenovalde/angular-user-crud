@@ -1,0 +1,44 @@
+<!--  [ngClass]="{'editing' : i === 2}" -->
+<form [formGroup]="editFom">
+  <div class="user" [ngClass]="{ editing: user?.isEditing }">
+    <ng-container *ngIf="user?.isEditing; else normalRow">
+      <div class="user__name">
+        <input type="text" name="name" aria-label="Users name" formControlName="userName" />
+      </div>
+      <div class="user__email">
+        <input type="text" name="email" aria-label="User email" formControlName="userEmail" />
+      </div>
+      <div class="user__department">
+        <select name="department" aria-label="Department" formControlName="userDepartment">
+          <option value="Marketing">Marketing</option>
+          <option value="Development">Development</option>
+        </select>
+      </div>
+      <div class="user__actions">
+        <div class="actions--editing">
+          <em class="bi bi-check2 arrow" (click)="save()"></em>
+          &nbsp;
+          <em class="bi bi-x text-danger arrow" (click)="cancelEdit()"></em>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #normalRow>
+      <div class="user__name">
+        <span>{{ user?.name }}</span>
+      </div>
+      <div class="user__email">
+        <span>{{ user?.email }}</span>
+      </div>
+      <div class="user__department">
+        <span>{{ user?.department }}</span>
+      </div>
+      <div class="user__actions">
+        <div class="actions">
+          <em class="bi bi-pencil arrow" (click)="toggleToEdit()"></em>
+          &nbsp;
+          <em class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></em>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</form>
