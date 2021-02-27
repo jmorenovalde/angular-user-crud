@@ -7,6 +7,7 @@ import { UserGridDepartmentComponent } from './user-grid-department/user-grid-de
 import { UserGridDepartmentItemComponent } from './user-grid-department-item/user-grid-department-item.component';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from '../../shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserListItemComponent,
   ],
   exports: [UsersComponent],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, PipesModule, ReactiveFormsModule],
 })
 export class UsersModule {}

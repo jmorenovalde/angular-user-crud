@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user-grid-department',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-grid-department.component.scss'],
 })
 export class UserGridDepartmentComponent implements OnInit {
-  public users = [1, 2, 3, 4, 5, 6];
+  /**
+   * The department neme
+   */
+  @Input() department: string;
+
+  @Input() users: User[];
 
   constructor() {}
 

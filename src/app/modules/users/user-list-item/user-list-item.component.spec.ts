@@ -31,7 +31,6 @@ describe('UserListItemComponent', () => {
       const user = new User();
       component.user = user;
       component.ngOnInit();
-      console.log(component.editFom);
       expect(component.editFom.get('userName').value).toBe('');
       expect(component.editFom.get('userEmail').value).toBe('');
       expect(component.editFom.get('userDepartment').value).toBe('');

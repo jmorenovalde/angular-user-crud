@@ -69,4 +69,13 @@ describe('UserListComponent', () => {
       expect(findUser.isEditing).toBeFalsy();
     });
   });
+
+  describe('trackByFunction', () => {
+    it('item is null or undefined', () => {
+      expect(component.trackByFunction(1, null)).toBeNull();
+    });
+    it('item is a valid object', () => {
+      expect(component.trackByFunction(1, 2)).toEqual(1);
+    });
+  });
 });

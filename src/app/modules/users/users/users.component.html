@@ -7,7 +7,7 @@
           class="btn btn-rouced-left"
           [ngClass]="{ 'btn-primary': showListOrGrid, 'btn-secundary': !showListOrGrid }"
           aria-label="List of Users"
-          (click)="toogleView('list')"
+          (click)="toggleView('list')"
         >
           <em class="bi bi-layout-three-columns"></em>
         </button>
@@ -16,7 +16,7 @@
           class="btn btn-rouced-right"
           [ngClass]="{ 'btn-primary': !showListOrGrid, 'btn-secundary': showListOrGrid }"
           aria-label="Grid of Users"
-          (click)="toogleView('grid')"
+          (click)="toggleView('grid')"
         >
           <em class="bi bi-grid-3x2"></em>
         </button>
