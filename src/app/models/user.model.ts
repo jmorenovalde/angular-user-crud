@@ -34,12 +34,17 @@ export class User {
    */
   isEditing: boolean;
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {
     this.isEditing = false;
   }
 
   /**
    * Init the User from a UserDto
+   *
    * @param user
    */
   public loadFromUserDto(user: UserDto): void {

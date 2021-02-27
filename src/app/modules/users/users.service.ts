@@ -7,5 +7,9 @@ import { UserDto } from '../../models/user-dto.model';
 export class UsersService {
   public users: UserDto[];
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {}
 }

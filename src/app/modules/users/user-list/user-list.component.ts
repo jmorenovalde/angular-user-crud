@@ -11,6 +11,10 @@ import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 export class UserListComponent implements OnInit {
   rows: User[] = [];
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {}
 
   /**

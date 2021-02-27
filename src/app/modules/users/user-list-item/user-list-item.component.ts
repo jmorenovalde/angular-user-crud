@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
+import { ModalService } from '../../modals/modal.service';
 
 @Component({
   selector: 'app-user-list-item',
@@ -23,7 +24,11 @@ export class UserListItemComponent implements OnInit {
    */
   public editFom: FormGroup;
 
-  constructor() {}
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
+  constructor(private modalService: ModalService) {}
 
   /**
    * @ignore
@@ -64,6 +69,10 @@ export class UserListItemComponent implements OnInit {
       this.user.isEditing = false;
       this.isEditingMode.emit(false);
     }
+  }
+
+  public delete(user: User) {
+    this.modalService.open('delete', user);
   }
 
   /**

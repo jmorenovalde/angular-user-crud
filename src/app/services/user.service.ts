@@ -15,6 +15,7 @@ export class UserService {
 
   /**
    * Constructor of the service.
+   *
    * @param httpClient The injection of the HttpClient
    */
   constructor(protected httpClient: HttpClient) {}
@@ -22,6 +23,7 @@ export class UserService {
   /**
    * This method return the users of the system.
    * The filters parameters are not required.
+   *
    * @param page the page of the result to get elements. Starts at 1.
    * @param limit the number of results by page.
    * @param id with this parameter gets the detail from this id user.
@@ -74,6 +76,7 @@ export class UserService {
 
   /**
    * This method is used to create a User in the system.
+   *
    * @param user the elemento to create a user. If the user is null or undefined throws an error.
    */
   public createUser(user: UserDto): Observable<UserDto>;
@@ -89,6 +92,7 @@ export class UserService {
 
   /**
    * This method is used to update a User in the system.
+   *
    * @param user the elemento to update a user. If the user is null or undefined throws an error.
    */
   public updateUser(user: UserDto): Observable<UserDto>;
@@ -110,6 +114,7 @@ export class UserService {
 
   /**
    * This method is used to update some data of a User in the system.
+   *
    * @param id the id of the user to makes the partial update.
    * @param user the elemento to update a user. If the user is null or undefined throws an error.
    */
@@ -132,6 +137,7 @@ export class UserService {
 
   /**
    * This method is used to update some data of a User in the system.
+   *
    * @param id the id of the user to makes the partial update.
    */
   public deleteUser(id: number): Observable<UserDto>;
@@ -149,6 +155,7 @@ export class UserService {
 
   /**
    * Function to generate the options for the REST API services.
+   *
    * @param defaultHeaders {HttpHeaders} the headers before this function.
    * @param parameters {any} the parameters that send in the query.
    */ getOptions(defaultHeaders: HttpHeaders, parameters?: any): any {
@@ -164,9 +171,14 @@ export class UserService {
   }
 
   /**
+   *
+   *
    * Function to generate the params to send into the query.
+   *
+   *
+   *
    * @param parameters {any} the params to send
-   * @returns {HttpParams} the structure of the params.
+   * @returns the structure of the params.
    */
   generateParams(parameters?: any): HttpParams {
     let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });

@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-6 text-end">
-      <button type="button" class="btn btn-primary btn-rouced" data-bs-toggle="modal" data-bs-target="#createModal">
+      <button type="button" class="btn btn-primary btn-rouced" (click)="openAddUser()">
         <span>Add row</span>
       </button>
     </div>
@@ -39,66 +39,3 @@
   </ng-template>
 </div>
 <br />
-
-<!-- Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3>Add row</h3>
-        <form>
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="Name" />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" value="email@domain.com" disabled />
-          </div>
-          <div class="field">
-            <label for="email">Department</label>
-            <select id="department">
-              <option value="Marketing" selected="false">Marketing</option>
-              <option value="Development" selected="true">Development</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-rouced" data-bs-dismiss="modal"><span>Cancel</span></button>
-        <button type="button" class="btn btn-primary btn-rouced"><span>Save</span></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3>Add row</h3>
-        <form>
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="Name" />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" value="email@domain.com" disabled />
-          </div>
-          <div class="field">
-            <label for="email">Department</label>
-            <select id="department">
-              <option value="Marketing" selected="false">Marketing</option>
-              <option value="Development" selected="true">Development</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-rouced" data-bs-dismiss="modal"><span>Cancel</span></button>
-        <button type="button" class="btn btn-danger btn-rouced"><span>Delete</span></button>
-      </div>
-    </div>
-  </div>
-</div>

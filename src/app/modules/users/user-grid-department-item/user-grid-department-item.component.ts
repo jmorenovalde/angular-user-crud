@@ -9,6 +9,10 @@ import { User } from '../../../models/user.model';
 export class UserGridDepartmentItemComponent implements OnInit {
   @Input() user: User;
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {}
 
   /**

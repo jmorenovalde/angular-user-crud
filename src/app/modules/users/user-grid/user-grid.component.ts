@@ -7,11 +7,24 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './user-grid.component.html',
 })
 export class UserGridComponent implements OnInit {
+  /**
+   * Users to show at the Marketing Departament Grid view.
+   */
   public usersMarketing: User[] = [];
+  /**
+   * Users to show at the Development Departament Grid view.
+   */
   public usersDevelopment: User[] = [];
 
+  /**
+   * The users list to show at both departments.
+   */
   private users: User[] = [];
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {}
 
   /**

@@ -27,6 +27,10 @@ export class UserGridDepartmentComponent implements OnInit, OnDestroy {
    */
   private unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
   constructor() {}
 
   /**
