@@ -25,6 +25,10 @@ export class UserListItemComponent implements OnInit {
 
   constructor() {}
 
+  /**
+   * @ignore
+   * The init method of the component life cycle hook.
+   */
   ngOnInit(): void {
     this.initEditForm();
   }

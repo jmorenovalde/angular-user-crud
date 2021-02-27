@@ -13,8 +13,16 @@ export class UsersComponent implements OnInit {
 
   constructor() {}
 
+  /**
+   * @ignore
+   * The init method of the component life cycle hook.
+   */
   ngOnInit(): void {}
 
+  /**
+   * This method is used to change between the list view and the grid view.
+   * @param viewToShow the view to show
+   */
   public toggleView(viewToShow: string): void {
     if (viewToShow === 'list') {
       this.showListOrGrid = true;

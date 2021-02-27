@@ -14,6 +14,10 @@ export class UserGridComponent implements OnInit {
 
   constructor() {}
 
+  /**
+   * @ignore
+   * The init method of the component life cycle hook.
+   */
   ngOnInit(): void {
     // TODO: this is only to design the view, this will come from UsersService.
     listUserDtoMock.forEach((userDto) => {
