@@ -18,7 +18,7 @@ export interface UserDto {
    * The department of the user
    * Aviable values: Marketing and Development.
    */
-  department?: 'Marketing' | 'Development';
+  department?: string;
   /**
    * The date time of the creation of the user in the system.
    */

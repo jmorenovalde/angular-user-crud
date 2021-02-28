@@ -1,0 +1,9 @@
+<div class="modal--background" [ngClass]="{ 'modal--hide': modalService.hideModal }">
+  <ng-container *ngIf="modalService.type === 'create'">
+    <app-create-modal></app-create-modal>
+  </ng-container>
+
+  <ng-container *ngIf="modalService.type === 'delete'">
+    <app-delete-modal [user]="modalService.user"></app-delete-modal>
+  </ng-container>
+</div>

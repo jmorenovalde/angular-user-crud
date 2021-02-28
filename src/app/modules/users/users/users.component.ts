@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from '../../modals/modal.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
   /**
@@ -11,15 +11,32 @@ export class UsersComponent implements OnInit {
    */
   public showListOrGrid = true;
 
-  constructor() {}
+  /**
+   * @ignore
+   * The constructor of the component.
+   */
+  constructor(private modalService: ModalService) {}
 
+  /**
+   * @ignore
+   * The init method of the component life cycle hook.
+   */
   ngOnInit(): void {}
 
-  public toogleView(viewToShow: string): void {
+  /**
+   * This method is used to change between the list view and the grid view.
+   *
+   * @param viewToShow the view to show
+   */
+  public toggleView(viewToShow: string): void {
     if (viewToShow === 'list') {
       this.showListOrGrid = true;
     } else {
       this.showListOrGrid = false;
     }
+  }
+
+  public openAddUser(): void {
+    this.modalService.open('create');
   }
 }

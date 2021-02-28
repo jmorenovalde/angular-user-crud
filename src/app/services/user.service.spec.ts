@@ -76,9 +76,7 @@ describe('UserService', () => {
           expect(error.status).toBe(500);
         }
       );
-      const req = httpTestingController.expectOne((httpRequest) => {
-        return httpRequest.url === '/USERS/users_jmv';
-      });
+      const req = httpTestingController.expectOne((httpRequest) => httpRequest.url === '/USERS/users_jmv');
       expect(req.request.method).toEqual('GET');
       req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' });
     });
@@ -109,9 +107,7 @@ describe('UserService', () => {
           expect(error.status).toBe(500);
         }
       );
-      const req = httpTestingController.expectOne((httpRequest) => {
-        return httpRequest.url === '/USERS/users_jmv';
-      });
+      const req = httpTestingController.expectOne((httpRequest) => httpRequest.url === '/USERS/users_jmv');
       expect(req.request.method).toEqual('POST');
       req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' });
     });
@@ -145,9 +141,7 @@ describe('UserService', () => {
           expect(error.status).toBe(500);
         }
       );
-      const req = httpTestingController.expectOne((httpRequest) => {
-        return httpRequest.url === '/USERS/users_jmv/1';
-      });
+      const req = httpTestingController.expectOne((httpRequest) => httpRequest.url === '/USERS/users_jmv/1');
       expect(req.request.method).toEqual('PUT');
       req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' });
     });
@@ -179,9 +173,7 @@ describe('UserService', () => {
           expect(error.status).toBe(500);
         }
       );
-      const req = httpTestingController.expectOne((httpRequest) => {
-        return httpRequest.url === '/USERS/users_jmv/1';
-      });
+      const req = httpTestingController.expectOne((httpRequest) => httpRequest.url === '/USERS/users_jmv/1');
       expect(req.request.method).toEqual('PATCH');
       req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' });
     });
@@ -209,9 +201,7 @@ describe('UserService', () => {
           expect(error.status).toBe(500);
         }
       );
-      const req = httpTestingController.expectOne((httpRequest) => {
-        return httpRequest.url === '/USERS/users_jmv/1';
-      });
+      const req = httpTestingController.expectOne((httpRequest) => httpRequest.url === '/USERS/users_jmv/1');
       expect(req.request.method).toEqual('DELETE');
       req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' });
     });

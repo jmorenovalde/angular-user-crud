@@ -8,6 +8,7 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 export class CustomHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
   /**
    * Decodificar la key
+   *
    * @param k cadena de la key a decodificar
    */
   encodeKey(k: string): string {
@@ -17,6 +18,7 @@ export class CustomHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
 
   /**
    * Decodificar un valor
+   *
    * @param v valor a decodificar
    */
   encodeValue(v: string): string {
