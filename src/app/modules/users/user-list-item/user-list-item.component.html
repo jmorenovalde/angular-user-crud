@@ -1,0 +1,65 @@
+<!--  [ngClass]="{'editing' : i === 2}" -->
+<form [formGroup]="editFom">
+  <div class="user" [ngClass]="{ editing: user?.isEditing }">
+    <ng-container *ngIf="user?.isEditing; else normalRow">
+      <div class="user__name">
+        <input
+          type="text"
+          name="name"
+          aria-label="Users name"
+          formControlName="userName"
+          [ngClass]="{ 'is-invalid': isNameInalid }"
+          [title]="isNameInalid ? 'Name is required' : ''"
+        />
+      </div>
+      <div class="user__email">
+        <input
+          type="text"
+          name="email"
+          aria-label="User email"
+          formControlName="userEmail"
+          [ngClass]="{ 'is-invalid': isEmailInvalid }"
+          [title]="isEmailInalid ? 'Email is invalid' : ''"
+        />
+      </div>
+      <div class="user__department">
+        <select name="department" aria-label="Department" formControlName="userDepartment">
+          <option value="Marketing">Marketing</option>
+          <option value="Development">Development</option>
+        </select>
+      </div>
+      <div class="user__actions">
+        <div class="actions--editing">
+          <button class="btn btn-light" [disabled]="saveDisabled" (click)="save()">
+            <em class="bi bi-check"></em>
+          </button>
+          <button class="btn btn-light" [disabled]="cancelDisabled" (click)="cancelEdit()">
+            <em class="bi bi-x text-danger"></em>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #normalRow>
+      <div class="user__name">
+        <span>{{ user?.name }}</span>
+      </div>
+      <div class="user__email">
+        <span>{{ user?.email }}</span>
+      </div>
+      <div class="user__department">
+        <span>{{ user?.department }}</span>
+      </div>
+      <div class="user__actions">
+        <div class="actions">
+          <button class="btn btn-light" (click)="toggleToEdit()">
+            <em class="bi bi-pencil"></em>
+          </button>
+          <button class="btn btn-light" (click)="deleteUser(user)">
+            <em class="bi bi-trash text-danger"></em>
+          </button>
+          &nbsp;
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</form>
