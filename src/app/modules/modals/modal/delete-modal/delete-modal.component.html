@@ -1,5 +1,5 @@
-<div class="modal fade show" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: block">
-  <div class="modal-dialog">
+<div class="modal fade show" id="deleteModal" tabindex="-1" aria-labelledby="Delete a user" style="display: block">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
         <h3>Remove row</h3>
@@ -20,7 +20,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light btn-rouced" (click)="close()"><span>Cancel</span></button>
-        <button type="button" class="btn btn-danger btn-rouced" (click)="delete()"><span>Delete</span></button>
+        <button type="button" [disabled]="isProcessing" class="btn btn-danger btn-rouced" (click)="delete()">
+          <span>Delete</span>
+        </button>
       </div>
     </div>
   </div>

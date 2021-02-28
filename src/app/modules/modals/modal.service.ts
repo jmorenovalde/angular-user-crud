@@ -46,7 +46,14 @@ export class ModalService {
   public open(type: 'create' | 'delete', user: User = null): void {
     this.pHideModal = false;
     this.type = type;
-    this.user = user;
+    if (type === 'delete') {
+      if (!user) {
+        throw new Error('To delete is needed an `user`.');
+      }
+      this.user = user;
+    } else {
+      this.user = undefined;
+    }
   }
 
   /**
@@ -54,5 +61,7 @@ export class ModalService {
    */
   public close(): void {
     this.pHideModal = true;
+    this.type = undefined;
+    this.user = undefined;
   }
 }

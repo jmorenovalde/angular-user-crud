@@ -85,7 +85,7 @@ export class UserService {
   public createUser(user: UserDto): Observable<any> {
     // The API support creates a user void, but it is not recommended.
     if (!user) {
-      throw new Error('Required parameter user was null or undefined when calling createUser.');
+      throw new Error('Required parameter `user` was null or undefined when calling `createUser`.');
     }
     return this.httpClient.post<Observable<UserDto>>('/USERS/users_jmv', user, this.getOptions(this.defaultHeaders));
   }
@@ -100,7 +100,7 @@ export class UserService {
   public updateUser(user: UserDto): Observable<HttpEvent<UserDto>>;
   public updateUser(user: UserDto): Observable<any> {
     if (!user) {
-      throw new Error('Required parameter user was null or undefined when calling updateUser.');
+      throw new Error('Required parameter `user` was null or undefined when calling `updateUser`.');
     }
     if (!user.id) {
       throw new Error('Required id of the user was null or undefined when calling updateUser.');
@@ -123,10 +123,10 @@ export class UserService {
   public partialUpdateUser(id: number, user: UserDto): Observable<HttpEvent<UserDto>>;
   public partialUpdateUser(id: number, user: UserDto): Observable<any> {
     if (!id) {
-      throw new Error('Required parameter id was null or undefined when calling updateUser.');
+      throw new Error('Required parameter `id` was null or undefined when calling `updateUser`.');
     }
     if (!user) {
-      throw new Error('Required parameter user was null or undefined when calling updateUser.');
+      throw new Error('Required parameter `user` was null or undefined when calling `updateUser`.');
     }
     return this.httpClient.patch<Observable<UserDto>>(
       `/USERS/users_jmv/${encodeURIComponent(String(id))}`,
@@ -145,7 +145,7 @@ export class UserService {
   public deleteUser(id: number): Observable<HttpEvent<UserDto>>;
   public deleteUser(id: number): Observable<any> {
     if (!id) {
-      throw new Error('Required parameter id was null or undefined when calling updateUser.');
+      throw new Error('Required parameter `id` was null or undefined when calling `updateUser`.');
     }
     return this.httpClient.delete<Observable<UserDto>>(
       `/USERS/users_jmv/${encodeURIComponent(String(id))}`,

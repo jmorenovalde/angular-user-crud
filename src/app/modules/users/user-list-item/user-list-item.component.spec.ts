@@ -1,23 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 import { User } from 'src/app/models/user.model';
+import { ModalService } from '../../modals/modal.service';
 
 import { UserListItemComponent } from './user-list-item.component';
 
 describe('UserListItemComponent', () => {
   let component: UserListItemComponent;
   let fixture: ComponentFixture<UserListItemComponent>;
+  let modalService: any;
+
+  const modalServiceStub = jasmine.createSpyObj('ModalService', ['open']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UserListItemComponent],
       imports: [ReactiveFormsModule],
+      providers: [{ provide: ModalService, useValue: modalServiceStub }],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserListItemComponent);
+    modalService = TestBed.inject(ModalService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -64,6 +70,7 @@ describe('UserListItemComponent', () => {
         id: 1,
         name: 'Name',
         email: 'email@domain.com',
+        department: 'Marketing',
         created: new Date(),
       });
       component.user = user;
@@ -110,7 +117,7 @@ describe('UserListItemComponent', () => {
       expect(component.isEditingMode.emit).not.toHaveBeenCalled();
     });
 
-    it('should be emited isEditingMode with `true` value and the user exists', () => {
+    it('should be emited isEditingMode with `true` value and the user exists', fakeAsync(() => {
       const user = new User();
       user.loadFromUserDto({
         id: 1,
@@ -119,9 +126,24 @@ describe('UserListItemComponent', () => {
         created: new Date(),
       });
       component.user = user;
-      component.save();
+      component.ngOnInit();
       fixture.detectChanges();
+      component.save();
+      tick(2000);
       expect(component.isEditingMode.emit).toHaveBeenCalledWith(false);
+    }));
+  });
+
+  it('delete a user, open a modal window', () => {
+    const user = new User();
+    user.loadFromUserDto({
+      id: 1,
+      name: 'Name',
+      email: 'email@domain.com',
+      created: new Date(),
     });
+    component.user = user;
+    component.deleteUser(user);
+    expect(modalService.open).toHaveBeenCalled();
   });
 });

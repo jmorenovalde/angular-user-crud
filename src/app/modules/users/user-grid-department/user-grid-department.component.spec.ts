@@ -29,6 +29,11 @@ describe('UserGridDepartmentComponent', () => {
   });
 
   describe('Search', () => {
+    /*
+     * In this suite of tests is needed to use `fakeAsync` because in the Observable `valueChanges` there is a pipe with
+     * `debounceTime(250)`, and is needed to wait al least 250ms to fire the private search method.
+     */
+
     beforeEach(() => {
       const usesList: User[] = [];
       listUserDtoMock.forEach((userDto) => {

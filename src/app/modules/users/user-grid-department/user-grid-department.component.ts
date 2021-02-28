@@ -16,10 +16,19 @@ export class UserGridDepartmentComponent implements OnInit, OnDestroy {
    */
   @Input() department: string;
 
+  /**
+   * The users of this department.
+   */
   @Input() users: User[];
 
+  /**
+   * List the users to show at the department grid.
+   */
   public usersToShow: User[] = [];
 
+  /**
+   * Form of the search user.
+   */
   public formSearch: FormGroup;
 
   /**

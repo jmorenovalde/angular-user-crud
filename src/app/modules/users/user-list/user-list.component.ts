@@ -28,7 +28,6 @@ export class UserListComponent implements OnInit {
       user.loadFromUserDto(userDto);
       this.rows.push(user);
     });
-    // console.log('Users', this.rows);
   }
 
   /**

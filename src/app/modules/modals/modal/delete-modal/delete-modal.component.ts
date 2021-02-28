@@ -8,7 +8,15 @@ import { ModalService } from '../../modal.service';
   styleUrls: ['../modal.component.scss'],
 })
 export class DeleteModalComponent implements OnInit {
+  /**
+   * The user to delete
+   */
   @Input() user: User;
+
+  /**
+   * This property is used to indicate that the delete process is running.
+   */
+  public isProcessing = false;
 
   /**
    * @ignore
@@ -30,8 +38,11 @@ export class DeleteModalComponent implements OnInit {
   }
 
   public delete(): void {
+    this.isProcessing = true;
     // TODO: send delete comand to the backend service
-    console.log('Delete user', this.user);
-    this.modalService.close();
+    setTimeout(() => {
+      console.log('Delete user', this.user);
+      this.modalService.close();
+    }, 1500);
   }
 }

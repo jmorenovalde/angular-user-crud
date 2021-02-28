@@ -1,4 +1,4 @@
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
 /* Generals */
@@ -39,6 +39,10 @@ select {
   }
 }
 
+.is-invalid {
+  border: 1px solid var(--bs-red) !important;
+}
+
 /* bottons */
 .btn-rouced-left {
   border-bottom-left-radius: 30px;
@@ -57,7 +61,6 @@ select {
     margin-right: 0.25rem;
   }
 }
-
 
 .btn-rouced {
   border-radius: 30px;
@@ -143,5 +146,20 @@ select {
   &:active,
   &.active {
     background-color: transparent;
+  }
+
+  &.disabled,
+  &[disabled],
+  &.disabled:hover,
+  &[disabled]:hover,
+  &.disabled:focus,
+  &[disabled]:focus,
+  &.disabled:active,
+  &[disabled]:active,
+  &.disabled.active,
+  &[disabled].active {
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
   }
 }
