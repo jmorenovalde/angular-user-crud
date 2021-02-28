@@ -1,9 +1,0 @@
-<h3>{{ department }}</h3>
-<form [formGroup]="formSearch">
-  <input type="text" formControlName="search" name="search" placeholder="Search" aria-label="Search" />
-</form>
-<div class="row pt-3">
-  <div class="col-4 pb-3" *ngFor="let user of usersToShow">
-    <app-user-grid-department-item [user]="user"></app-user-grid-department-item>
-  </div>
-</div>
