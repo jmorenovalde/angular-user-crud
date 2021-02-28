@@ -1,0 +1,11 @@
+{
+  "/USERS": {
+    "target": "http://34.242.254.132",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/USERS": ""
+    }
+  }
+}
