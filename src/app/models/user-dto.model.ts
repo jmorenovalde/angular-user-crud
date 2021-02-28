@@ -1,4 +1,9 @@
 /**
+ * Type Deparment.
+ */
+export type Department = 'Marketing' | 'Development';
+
+/**
  * The User model from the Backend (Data Transfer Object).
  */
 export interface UserDto {
@@ -18,7 +23,7 @@ export interface UserDto {
    * The department of the user
    * Aviable values: Marketing and Development.
    */
-  department?: string;
+  department?: Department;
   /**
    * The date time of the creation of the user in the system.
    */

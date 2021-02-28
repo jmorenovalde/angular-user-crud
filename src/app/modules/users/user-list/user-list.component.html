@@ -6,7 +6,7 @@
       <div class="list--header__department"><span>Department</span></div>
       <div class="list--header__actions"><span>actions</span></div>
     </div>
-    <div class="list--body" *ngFor="let user of rows; trackBy: trackByFunction">
+    <div class="list--body" *ngFor="let user of users; trackBy: trackByFunction">
       <app-user-list-item [user]="user" (isEditingMode)="isEditing(user.id, $event)"></app-user-list-item>
     </div>
   </div>

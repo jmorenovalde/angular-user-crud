@@ -3,6 +3,7 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@a
 import { Observable } from 'rxjs';
 import { CustomHttpUrlEncodingCodec } from './encoder';
 import { UserDto } from '../models/user-dto.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -171,11 +172,7 @@ export class UserService {
   }
 
   /**
-   *
-   *
    * Function to generate the params to send into the query.
-   *
-   *
    *
    * @param parameters {any} the params to send
    * @returns the structure of the params.
