@@ -1,33 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
+import { UsersService } from '../users.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnInit {
-  rows: User[] = [];
+export class UserListComponent implements OnInit, OnDestroy {
+  /**
+   * The users to show at the view.
+   */
+  public users: User[] = [];
+
+  /**
+   * This varible is used to unsuscribe the subscriptions on the ngOnDestroy method.
+   */
+  private unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
   /**
    * @ignore
    * The constructor of the component.
    */
-  constructor() {}
+  constructor(private usersService: UsersService) {
+    this.usersService.users$?.pipe(takeUntil(this.unsubscribe$)).subscribe((users) => {
+      this.users = users;
+    });
+  }
 
   /**
    * @ignore
    * The init method of the component life cycle hook.
    */
   ngOnInit(): void {
-    // TODO: this is only to design the view, this will come from UsersService.
-    listUserDtoMock.forEach((userDto) => {
-      const user = new User();
-      user.loadFromUserDto(userDto);
-      this.rows.push(user);
-    });
+    this.usersService.loadUsers();
+  }
+
+  /**
+   * @ignore
+   * Component lifecycle that runs when the component is going to destroy.
+   */
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 
   /**
@@ -42,7 +61,7 @@ export class UserListComponent implements OnInit {
 
   public isEditing(userId: number, isEditing: boolean) {
     if (isEditing) {
-      this.rows.map((user) => {
+      this.users.map((user) => {
         if (user.id !== userId) {
           user.isEditing = false;
         } else {
@@ -51,7 +70,7 @@ export class UserListComponent implements OnInit {
         return user;
       });
     } else {
-      this.rows.map((user) => {
+      this.users.map((user) => {
         if (user.id === userId) {
           user.isEditing = false;
         }

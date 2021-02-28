@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../modals/modal.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +16,7 @@ export class UsersComponent implements OnInit {
    * @ignore
    * The constructor of the component.
    */
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private usersService: UsersService) {}
 
   /**
    * @ignore

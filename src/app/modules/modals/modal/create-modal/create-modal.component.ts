@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UsersService } from 'src/app/modules/users/users.service';
 import { EMAIL_PATTER } from '../../../../utils/utills';
 import { ModalService } from '../../modal.service';
 
@@ -40,7 +41,7 @@ export class CreateModalComponent implements OnInit, OnDestroy {
    * @ignore
    * The constructor of the component.
    */
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private usersService: UsersService) {}
 
   /**
    * @ignore
@@ -76,13 +77,8 @@ export class CreateModalComponent implements OnInit, OnDestroy {
         name: this.userForm.get('userName').value,
         email: this.userForm.get('userEmail').value,
         department: this.userForm.get('userDepartment').value,
-        created: new Date(),
       };
-      // TODO: send data to the service.
-      setTimeout(() => {
-        console.log('-->', userToCreate);
-        this.modalService.close();
-      }, 1500);
+      this.usersService.createUser(userToCreate);
     }
   }
 

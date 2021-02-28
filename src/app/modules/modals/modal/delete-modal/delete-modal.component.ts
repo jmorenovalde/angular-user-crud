@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { UsersService } from 'src/app/modules/users/users.service';
 import { ModalService } from '../../modal.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class DeleteModalComponent implements OnInit {
    * @ignore
    * The constructor of the component.
    */
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private usersService: UsersService) {}
 
   /**
    * @ignore
@@ -39,10 +40,6 @@ export class DeleteModalComponent implements OnInit {
 
   public delete(): void {
     this.isProcessing = true;
-    // TODO: send delete comand to the backend service
-    setTimeout(() => {
-      console.log('Delete user', this.user);
-      this.modalService.close();
-    }, 1500);
+    this.usersService.deleteUser(this.user.id);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './user-grid-department.component.html',
   styleUrls: ['./user-grid-department.component.scss'],
 })
-export class UserGridDepartmentComponent implements OnInit, OnDestroy {
+export class UserGridDepartmentComponent implements OnChanges, OnInit, OnDestroy {
   /**
    * The department neme
    */
@@ -42,14 +42,18 @@ export class UserGridDepartmentComponent implements OnInit, OnDestroy {
    */
   constructor() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.users?.length > 0) {
+      this.usersToShow = [];
+      this.usersToShow.push(...this.users);
+    }
+  }
+
   /**
    * @ignore
    * The init method of the component life cycle hook.
    */
   ngOnInit(): void {
-    if (this.users?.length > 0) {
-      this.usersToShow.push(...this.users);
-    }
     this.initFormSearch();
   }
 

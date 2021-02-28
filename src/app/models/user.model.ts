@@ -1,4 +1,4 @@
-import { UserDto } from './user-dto.model';
+import { Department, UserDto } from './user-dto.model';
 
 /**
  * This class is for show the user at list or grid.
@@ -20,7 +20,7 @@ export class User {
    * The department of the user
    * Aviable values: Marketing and Development.
    */
-  department?: string;
+  department?: Department;
   /**
    * The date time of the creation of the user in the system.
    */

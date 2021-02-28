@@ -1,26 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ModalService } from '../../modals/modal.service';
-import { UsersModule } from '../users.module';
 
+import { ModalService } from '../../modals/modal.service';
+import { UsersService } from '../users.service';
+
+import { UsersModule } from '../users.module';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
   let modalService: any;
+  let usersService: any;
 
   const modalServiceStub = jasmine.createSpyObj('ModalService', ['open']);
+  const usersServiceStub = jasmine.createSpyObj('UsersService', ['loadUsers']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UsersModule],
-      providers: [{ provide: ModalService, useValue: modalServiceStub }],
+      providers: [
+        { provide: ModalService, useValue: modalServiceStub },
+        { provide: UsersService, useValue: usersServiceStub },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UsersComponent);
     modalService = TestBed.inject(ModalService);
+    usersService = TestBed.inject(UsersService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

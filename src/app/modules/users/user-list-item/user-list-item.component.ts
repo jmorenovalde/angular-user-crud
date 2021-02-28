@@ -6,6 +6,7 @@ import { User } from '../../../models/user.model';
 import { UserDto } from '../../../models/user-dto.model';
 import { EMAIL_PATTER } from '../../../utils/utills';
 import { ModalService } from '../../modals/modal.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-user-list-item',
@@ -44,6 +45,11 @@ export class UserListItemComponent implements OnInit {
   public saveDisabled = false;
 
   /**
+   * This property is used to disable the Save button.
+   */
+  public cancelDisabled = false;
+
+  /**
    * This variable is used to restore the values of the user on change of mode or cancel canges.
    */
   private userRestore: UserDto;
@@ -57,7 +63,7 @@ export class UserListItemComponent implements OnInit {
    * @ignore
    * The constructor of the component.
    */
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private usersService: UsersService) {}
 
   /**
    * @ignore
@@ -84,7 +90,6 @@ export class UserListItemComponent implements OnInit {
    * toggle the view to the normal mode and fires isEditingMode event to the parent component as false.
    */
   public cancelEdit(): void {
-    // TODO: restore the value of the user data.
     if (this.user) {
       this.user.isEditing = false;
       this.isEditingMode.emit(false);
@@ -97,26 +102,15 @@ export class UserListItemComponent implements OnInit {
   public save(): void {
     if (this.user && this.editFom.valid) {
       this.saveDisabled = true;
-      // if (
-      //   this.user.name !== this.userRestore.name &&
-      //   this.user.email !== this.userRestore.email &&
-      //   this.user.department !== this.userRestore.department
-      // ) {
-      //   // PUT
-      // } else if (
-      //   this.user.name !== this.userRestore.name ||
-      //   this.user.email !== this.userRestore.email ||
-      //   this.user.department !== this.userRestore.department
-      // ) {
-      //   // PATCH
-      // }
-
-      // TODO: send data to the service.
-      setTimeout(() => {
-        console.log('-->', this.editFom.value);
-        this.user.isEditing = false;
-        this.isEditingMode.emit(false);
-      }, 1500);
+      this.cancelDisabled = true;
+      const userToUpdate: UserDto = {
+        id: this.user.id,
+        name: this.editFom.get('userName').value,
+        email: this.editFom.get('userEmail').value,
+        department: this.editFom.get('userDepartment').value,
+        created: this.user.created,
+      };
+      this.usersService.updateUser(userToUpdate);
     }
   }
 

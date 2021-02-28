@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 import { User } from 'src/app/models/user.model';
 import { ModalService } from '../../modals/modal.service';
+import { UsersService } from '../users.service';
 
 import { UserListItemComponent } from './user-list-item.component';
 
@@ -10,20 +11,26 @@ describe('UserListItemComponent', () => {
   let component: UserListItemComponent;
   let fixture: ComponentFixture<UserListItemComponent>;
   let modalService: any;
+  let usersService: any;
 
   const modalServiceStub = jasmine.createSpyObj('ModalService', ['open']);
+  const usersServiceStub = jasmine.createSpyObj('UsersService', ['updateUser']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UserListItemComponent],
       imports: [ReactiveFormsModule],
-      providers: [{ provide: ModalService, useValue: modalServiceStub }],
+      providers: [
+        { provide: ModalService, useValue: modalServiceStub },
+        { provide: UsersService, useValue: usersServiceStub },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserListItemComponent);
     modalService = TestBed.inject(ModalService);
+    usersService = TestBed.inject(UsersService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -117,7 +124,7 @@ describe('UserListItemComponent', () => {
       expect(component.isEditingMode.emit).not.toHaveBeenCalled();
     });
 
-    it('should be emited isEditingMode with `true` value and the user exists', fakeAsync(() => {
+    it('should be emited isEditingMode with `true` value and the user exists', () => {
       const user = new User();
       user.loadFromUserDto({
         id: 1,
@@ -129,9 +136,8 @@ describe('UserListItemComponent', () => {
       component.ngOnInit();
       fixture.detectChanges();
       component.save();
-      tick(2000);
-      expect(component.isEditingMode.emit).toHaveBeenCalledWith(false);
-    }));
+      expect(usersService.updateUser).toHaveBeenCalled();
+    });
   });
 
   it('delete a user, open a modal window', () => {
