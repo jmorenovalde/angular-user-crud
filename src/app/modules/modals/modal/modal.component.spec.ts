@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 import { User } from 'src/app/models/user.model';
@@ -19,7 +20,7 @@ describe('ModalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ModalComponent, CreateModalComponent, DeleteModalComponent],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
       providers: [ModalService],
     }).compileComponents();
   });

@@ -237,12 +237,22 @@ describe('UserListItemComponent', () => {
         expect(edit).toBeNull('The view didn`t change');
       }));
 
-      it('click to update button and the view should be called updteUser method of UsersService', fakeAsync(() => {
+      it('click to update button and the view should be called updateUser', fakeAsync(() => {
         component.user.isEditing = true;
         fixture.detectChanges();
+        component.editFom.setValue({
+          userName: component.user.name,
+          userEmail: component.user.email,
+          userDepartment: component.user.department,
+        });
+        const edit = el.query(By.css('.editing'));
+        expect(edit).toBeTruthy('The view is normal view');
         const buttons = el.queryAll(By.css('.btn-light'));
         const button = buttons[0];
         click(button);
+        flush();
+        expect(component.saveDisabled).toBeTruthy('Not enter at save method');
+        expect(component.cancelDisabled).toBeTruthy();
         expect(usersService.updateUser).toHaveBeenCalled();
       }));
     });

@@ -62,27 +62,23 @@ describe('CreateModalComponent', () => {
   });
 
   describe('save', () => {
-    // FIXME:I don't know what's happed with this test.
-    xit('should not be closed the modal because the form is not valid', fakeAsync(() => {
-      component.userForm.get('userName').setValue('');
-      component.onBlurUerName();
-      fixture.detectChanges();
-      flush();
-      expect(component.isNameInalid).toBeTruthy('The name is valid');
-      expect(component.userForm.invalid).toBeTruthy('The form is valid');
-      component.userForm.markAsDirty();
-      fixture.detectChanges();
-      component.save();
-      flush();
-      expect(usersService.createUser).not.toHaveBeenCalled();
-    }));
-
     it('should be closed the modal because the form is valid', () => {
       component.userForm.get('userName').setValue('Name');
       component.userForm.get('userEmail').setValue('name@domain.com');
       component.userForm.get('userDepartment').setValue('Marketing');
       component.save();
       expect(usersService.createUser).toHaveBeenCalled();
+    });
+
+    it('should not be closed the modal because the form is not valid', () => {
+      component.onBlurUerName();
+      fixture.detectChanges();
+      expect(component.isNameInalid).toBeTruthy('The name is valid');
+      expect(component.userForm.invalid).toBeTruthy('The form is valid');
+      component.save();
+      fixture.detectChanges();
+      expect(component.saveDisabled).toBeTruthy('Not enter at save function');
+      expect(component.userForm.invalid).toBeTruthy('The form is valid');
     });
   });
 
