@@ -1,4 +1,3 @@
-<!--  [ngClass]="{'editing' : i === 2}" -->
 <form [formGroup]="editFom">
   <div class="user" [ngClass]="{ editing: user?.isEditing }">
     <ng-container *ngIf="user?.isEditing; else normalRow">
