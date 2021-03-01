@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 import { User } from 'src/app/models/user.model';
 
@@ -11,13 +13,16 @@ import { UserListComponent } from './user-list.component';
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
+  let el: DebugElement;
   let usersService: any;
+
+  const usersServiceStub = jasmine.createSpyObj('UsersService', ['loadUsers']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UserListComponent, UserListItemComponent],
       imports: [ReactiveFormsModule, HttpClientTestingModule],
-      providers: [UsersService],
+      providers: [{ provide: UsersService, useValue: usersServiceStub }],
     }).compileComponents();
   });
 
@@ -25,6 +30,7 @@ describe('UserListComponent', () => {
     fixture = TestBed.createComponent(UserListComponent);
     usersService = TestBed.inject(UsersService);
     component = fixture.componentInstance;
+    el = fixture.debugElement;
     fixture.detectChanges();
   });
 
@@ -81,6 +87,35 @@ describe('UserListComponent', () => {
     });
     it('item is a valid object', () => {
       expect(component.trackByFunction(1, 2)).toEqual(1);
+    });
+  });
+
+  describe('view', () => {
+    it('the header is correct', () => {
+      const name = el.query(By.css('.list--header__name > span'));
+      expect(name.nativeElement.textContent).toEqual('Name', 'The column name not has the correct name');
+      const email = el.query(By.css('.list--header__email > span'));
+      expect(email.nativeElement.textContent).toEqual('Email', 'The column email not has the correct name');
+      const department = el.query(By.css('.list--header__department > span'));
+      expect(department.nativeElement.textContent).toEqual(
+        'Department',
+        'The column department not has the correct name'
+      );
+      const actions = el.query(By.css('.list--header__actions > span'));
+      expect(actions.nativeElement.textContent).toEqual('Actions', 'The column actions not has the correct name');
+    });
+
+    it('the number of elements of users is correcte with enter data', () => {
+      const users: User[] = [];
+      listUserDtoMock.forEach((userDto) => {
+        const user = new User();
+        user.loadFromUserDto(userDto);
+        users.push(user);
+      });
+      component.users = users;
+      fixture.detectChanges();
+      const elements = el.queryAll(By.css('.list--body'));
+      expect(elements.length).toBe(listUserDtoMock.length);
     });
   });
 });

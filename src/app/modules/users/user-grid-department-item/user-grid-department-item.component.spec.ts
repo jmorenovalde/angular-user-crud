@@ -57,7 +57,6 @@ describe('UserGridDepartmentItemComponent', () => {
       component.user.loadFromUserDto(userDto);
       fixture.detectChanges();
       const experienced = el.query(By.css('.user-experince'));
-      console.log(experienced.nativeElement);
       expect(experienced.nativeElement.textContent).toEqual('Experienced');
     });
 
