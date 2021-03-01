@@ -1,5 +1,7 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { listUserDtoMock } from 'src/app/mockdata/users.mock.spec';
 import { User } from 'src/app/models/user.model';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
@@ -10,6 +12,7 @@ import { UserGridDepartmentComponent } from './user-grid-department.component';
 describe('UserGridDepartmentComponent', () => {
   let component: UserGridDepartmentComponent;
   let fixture: ComponentFixture<UserGridDepartmentComponent>;
+  let el: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,6 +24,7 @@ describe('UserGridDepartmentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserGridDepartmentComponent);
     component = fixture.componentInstance;
+    el = fixture.debugElement;
     fixture.detectChanges();
   });
 
@@ -67,5 +71,14 @@ describe('UserGridDepartmentComponent', () => {
       tick(500);
       expect(component.usersToShow?.length).toEqual(7);
     }));
+  });
+
+  describe('view', () => {
+    it('the name of the grid shoub be the name of the component', () => {
+      component.department = 'Department';
+      fixture.detectChanges();
+      const departmentName = el.query(By.css('h3'));
+      expect(departmentName.nativeElement.textContent).toEqual(component.department);
+    });
   });
 });
